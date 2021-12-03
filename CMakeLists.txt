@@ -4,3 +4,5 @@ project(AdventOfCode LANGUAGES C)
 set(CMAKE_C_STANDARD 11)
 
 add_subdirectory(Day1)
+add_subdirectory(Day2)
+add_subdirectory(Day3)

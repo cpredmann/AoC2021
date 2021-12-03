@@ -1,5 +1,5 @@
 add_executable(
-    Day1
+    Day3
     Problems.c
     )
 
