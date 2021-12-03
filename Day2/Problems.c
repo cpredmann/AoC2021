@@ -91,8 +91,8 @@ int main(int argc, char** argv)
         problem_1(direction, value, &horiz_1, &depth_1);
         problem_2(direction, value, &horiz_2, &depth_2, &aim);
     }
-    printf("Problem 1 value = %d\n ", horiz_1 * depth_1);
-    printf("Problem 2 value = %d\n ", horiz_2 * depth_2);
+    printf("Problem 1: %d\n", horiz_1 * depth_1);
+    printf("Problem 2: %d\n", horiz_2 * depth_2);
     free(buf);
     fclose(fh);
 

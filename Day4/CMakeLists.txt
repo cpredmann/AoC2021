@@ -1,11 +1,11 @@
 add_executable(
-    Day3
+    Day4
     Problems.c
     )
 
 add_test(
     NAME
-    Day3Input
+    Day4Input
     COMMAND
-    Day3 ${CMAKE_CURRENT_SOURCE_DIR}/input.txt
+    Day4 ${CMAKE_CURRENT_SOURCE_DIR}/input.txt
     )

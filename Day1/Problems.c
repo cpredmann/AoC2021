@@ -56,8 +56,8 @@ int main(int argc, char** argv)
         }
         count++;
     }
-    printf("Problem 1 value = %d\n", increases_1);
-    printf("Problem 2 value = %d\n", increases_2);
+    printf("Problem 1: %d\n", increases_1);
+    printf("Problem 2: %d\n", increases_2);
 
 
     free(buf);
