@@ -13,18 +13,18 @@ typedef struct Board
 
 int32_t sum_of_uncalled(Board* board)
 {
-	int32_t sum = 0;
-	for (int r = 0; r < 5; ++r)
+    int32_t sum = 0;
+    for (int r = 0; r < 5; ++r)
+    {
+	for (int c = 0; c < 5; ++c)
 	{
-		for (int c = 0; c < 5; ++c)
-		{
-			if (!board->called[r][c])
-			{
-				sum += board->rows[r][c];
-			}
-		}
+	    if (!board->called[r][c])
+	    {
+		sum += board->rows[r][c];
+	    }
 	}
-	return sum;
+    }
+    return sum;
 }
 
 void print_board(Board* board)
@@ -91,10 +91,10 @@ bool is_winner(Board* board)
         {
             won &= board->called[i][4-i];
         }
-		if (won)
-		{
-			return true;
-		}
+	if (won)
+	{
+	    return true;
+	}
     }
 #endif
     return false;
@@ -223,19 +223,19 @@ int main(int argc, char** argv)
     {
         for (int b = 0; b < board_count; ++b)
         {
-			if (!boards[b].won)
-			{
-				update_board(moves[i], &boards[b]);
-				if (is_winner(&boards[b]))
-				{
-					boards[b].won = true;
-					winning_number = moves[i];
-					winning_board = b;
-					win_order[winners] = b;
-					winning_numbers[winners] = winning_number;
-					winners++;
-				}
-			}
+	    if (!boards[b].won)
+	    {
+		update_board(moves[i], &boards[b]);
+		if (is_winner(&boards[b]))
+		{
+		    boards[b].won = true;
+		    winning_number = moves[i];
+		    winning_board = b;
+		    win_order[winners] = b;
+		    winning_numbers[winners] = winning_number;
+		    winners++;
+		}
+	    }
         }
     }
 
