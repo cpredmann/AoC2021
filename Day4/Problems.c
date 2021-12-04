@@ -213,8 +213,6 @@ int main(int argc, char** argv)
         }
     }
 
-    int32_t winning_number = 0;
-    int32_t winning_board = 0;
     int32_t win_order[board_count];
     int32_t winning_numbers[board_count];
     int32_t winners = 0;
@@ -229,10 +227,8 @@ int main(int argc, char** argv)
 		if (is_winner(&boards[b]))
 		{
 		    boards[b].won = true;
-		    winning_number = moves[i];
-		    winning_board = b;
 		    win_order[winners] = b;
-		    winning_numbers[winners] = winning_number;
+		    winning_numbers[winners] = moves[i];
 		    winners++;
 		}
 	    }
@@ -240,7 +236,7 @@ int main(int argc, char** argv)
     }
 
     printf("Problem 1: %d\n", winning_numbers[0] * sum_of_uncalled(&boards[win_order[0]]));
-    printf("Problem 2: %d\n", winning_number * sum_of_uncalled(&boards[winning_board]));
+    printf("Problem 2: %d\n", winning_numbers[winners-1] * sum_of_uncalled(&boards[win_order[winners-1]]));
 
     free(boards);
     free(moves);
