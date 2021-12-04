@@ -1,5 +1,7 @@
 build*/
 .ycm*
+**/Testing
+
 #
 # Prerequisites
 *.d
