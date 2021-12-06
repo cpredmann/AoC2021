@@ -77,11 +77,6 @@ int main(int argc, char** argv)
     int32_t max_y = INT32_MIN;
     while ((read = getline(&buf, &buflen, fh)) != -1)
     {
-        if (line_count > 1000)
-        {
-            lines = realloc(lines, line_count * 2 * sizeof(Line));
-            printf("reallocating\n");
-        }
         parse_line(buf, &lines[line_count]);
         max_x = fmax(fmax(lines[line_count].x1, lines[line_count].x2), max_x);
         max_y = fmax(fmax(lines[line_count].y1, lines[line_count].y2), max_y);
