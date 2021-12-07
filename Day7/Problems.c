@@ -65,6 +65,14 @@ int main(int argc, char** argv)
         }
     }
 
+    int32_t sum_cache[move_range];
+    for (int i = 0; i < move_range; ++i)
+    {
+        if (i > 0)
+        {
+            sum_cache[i] = sum_cache[i-1] + i;
+        }
+    }
     int32_t p2_min_moves = INT32_MAX;
     for (int i = 0; i < move_range; ++i)
     {
@@ -72,10 +80,7 @@ int main(int argc, char** argv)
         for (int j = 0; j < sub_count; ++j)
         {
             int32_t moves = sub_moves[j][i];
-            for (int k = 0; k < moves; ++k)
-            {
-                sum += k + 1;
-            }
+            sum += sum_cache[moves];
         }
         if (sum < p2_min_moves)
         {
