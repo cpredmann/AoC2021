@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 int main(int argc, char** argv)
 {
@@ -21,11 +22,69 @@ int main(int argc, char** argv)
     char* buf = NULL;
     ssize_t read = 0;
 
+    int32_t sub_position[1000];
+    int32_t sub_count = 0;
+
+    int32_t max_val = INT32_MIN;
+    int32_t min_val = INT32_MAX;
+
     while ((read = getline(&buf, &buflen, fh)) != -1)
     {
+        char* context = NULL;
+        char* token = strtok_r(buf, ",", &context);
+        while (NULL != token)
+        {
+            sub_position[sub_count] = strtoll(token, NULL, 10);
+            max_val = fmax(max_val, sub_position[sub_count]);
+            min_val = fmin(min_val, sub_position[sub_count]);
+            token = strtok_r(NULL, ",", &context);
+            sub_count++;
+        }
     }
-    //printf("Problem 1: %d\n", increases_1);
-    //printf("Problem 2: %d\n", increases_2);
+
+    int32_t move_range = max_val - min_val + 1;
+    int32_t sub_moves[sub_count][move_range];
+    for (int i = 0; i < sub_count; ++i)
+    {
+        for (int j = 0; j < move_range; ++j)
+        {
+            sub_moves[i][j] = abs(min_val + j - sub_position[i]);
+        }
+    }
+    int32_t min_moves = INT32_MAX;
+    for (int i = 0; i < move_range; ++i)
+    {
+        int32_t sum = 0;
+        for (int j = 0; j < sub_count; ++j)
+        {
+            sum += sub_moves[j][i];
+        }
+        if (sum < min_moves)
+        {
+            min_moves = sum;
+        }
+    }
+
+    int32_t p2_min_moves = INT32_MAX;
+    for (int i = 0; i < move_range; ++i)
+    {
+        int32_t sum = 0;
+        for (int j = 0; j < sub_count; ++j)
+        {
+            int32_t moves = sub_moves[j][i];
+            for (int k = 0; k < moves; ++k)
+            {
+                sum += k + 1;
+            }
+        }
+        if (sum < p2_min_moves)
+        {
+            p2_min_moves = sum;
+        }
+    }
+
+    printf("Problem 1: %d\n", min_moves);
+    printf("Problem 2: %d\n", p2_min_moves);
 
     free(buf);
     fclose(fh);
